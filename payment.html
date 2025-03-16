@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offer Tribute - Backspinning Mercury</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+</head>
+<body>
+
+  <div class="content">
+    <h1>Offer Tribute</h1>
+    <p>Align with Mercury’s backspin. Choose your tribute:</p>
+
+    <div id="paypal-button-container-1"></div>
+    <p>Offering of Silver - $49</p>
+
+    <div id="paypal-button-container-2"></div>
+    <p>Circle of the Orbiters - $149</p>
+
+    <div id="paypal-button-container-3"></div>
+    <p>Grand Retrograde Benediction - $999</p>
+
+    <footer>
+      <a href="index.html">Return to Main Site</a>
+    </footer>
+  </div>
+
+  <script>
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: '49.00' },
+            description: 'Offering of Silver'
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function() {
+          window.location.href = "name-form.html";
+        });
+      }
+    }).render('#paypal-button-container-1');
+
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: '149.00' },
+            description: 'Circle of the Orbiters'
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function() {
+          window.location.href = "name-form.html";
+        });
+      }
+    }).render('#paypal-button-container-2');
+
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: '999.00' },
+            description: 'Grand Retrograde Benediction'
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function() {
+          window.location.href = "name-form.html";
+        });
+      }
+    }).render('#paypal-button-container-3');
+  </script>
+
+</body>
+</html>
